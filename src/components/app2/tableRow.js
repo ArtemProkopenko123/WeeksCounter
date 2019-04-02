@@ -1,4 +1,5 @@
 import React from 'react'
+import WeeklyMood from './weeklyMood';
 
 
 class TableRow extends React.Component{
@@ -13,7 +14,6 @@ class TableRow extends React.Component{
         if(stateVal.inputDate && stateVal.inputMonth && (stateVal.inputYear.length === 4) ){
             weeks = this.getWeeksCount(stateVal);
         }
-
         let tr = [];
         let lastItem;
 
@@ -31,7 +31,7 @@ class TableRow extends React.Component{
                     // Set class name if td is active
                 if(weeks && lastItem <= weeks){ divStyle = 'active'} else {divStyle = ''} ;
 
-                children.push(<td className={divStyle} id={lastItem.toString()} key={lastItem.toString()}>{lastItem}</td>)
+                children.push(<td onClick={this.props.setMood} className={divStyle} id={lastItem.toString()} key={lastItem.toString()}>{lastItem}</td>)
             }
                 //Create the parent and add the children
             tr.push(<tr key={year.toString()}><th className="bg-dark text-white">{year}</th>{children}</tr>)
@@ -52,22 +52,10 @@ class TableRow extends React.Component{
     getWeeksCount(state){
             // Curent date
         const curentDate = new Date();
-        /*
-            // To form valid date format 
-        let myDate =  state.inputYear + '-' + ('0' + (state.inputMonth)).slice(-2) + '-' + ('0' + state.inputDate).slice(-2);
-            // Calculate weeks count
-        let weeks = curentDate.getTime() - new Date(myDate).getTime();
-            // Cound weeks in date
-        weeks = ""+((((weeks/1000)/60)/60)/24)/7;
-            // Get integer weeks count
-        weeks = Number(weeks.substring(0, 4));
-        return weeks;
-        */ 
-
         let weeks = (((curentDate.getFullYear() - state.inputYear) * 365) / 7) + (((curentDate.getMonth()+1 - state.inputMonth) * 30 ) / 7) - Math.abs(((curentDate.getDate() - state.inputDate ) / 7 ));
 
-        //if((weeks / 52 / 8) <= 1 )weeks = weeks + 1;
-   
+        //if((weeks / 52 ) <= 8 )weeks = weeks + 1;
+        if((weeks / 52) > 65) weeks = weeks - 1;
         return  weeks - (weeks / 52 / 8);
 
     }
@@ -75,6 +63,9 @@ class TableRow extends React.Component{
     render() {
         return(
             <>
+                <WeeklyMood 
+                    state = {this.props}
+                />
                 {this.createRow(this.props)}
             </>
         )

@@ -3,7 +3,7 @@ import DateForm from './dateForm';
 import TableRow from './tableRow';
 import TableHeader from './tableHeader';
 
-class AppWrap extends React.Component {
+export default class AppWrap extends React.Component {
 
 
     constructor(props){
@@ -11,11 +11,13 @@ class AppWrap extends React.Component {
         // Main state
         this.state = {
             inputDate: '1',
-            inputMonth: '3',
+            inputMonth: '4',
             inputYear: '2018',
             error: undefined
         };
         this.handler = this.handler.bind(this);
+
+        this.setMood = this.setMood.bind(this);
     }
     handler(inputDate,inputMonth,inputYear) {
         // Validate input's dates to set or remove error message 
@@ -41,10 +43,15 @@ class AppWrap extends React.Component {
             });
         }
     }
-
+    setMood (event){
+        this.setState({
+            weekId: event.target.id
+        })
+    }
     render(){
         return(
             <div className=" text-center m-auto">
+
                 <DateForm 
                     inputEvent={this.handler}
                     inputDate={this.state.inputDate}
@@ -61,6 +68,7 @@ class AppWrap extends React.Component {
                         <tbody>
                             <TableRow
                                 state = {this.state}
+                                setMood = {this.setMood}
                             />
                         </tbody>
                     </table>
@@ -73,4 +81,3 @@ class AppWrap extends React.Component {
 }
 
 
-export default AppWrap;

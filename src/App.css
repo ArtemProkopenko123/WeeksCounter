@@ -18,3 +18,6 @@ table th {
     background-color: red;
     color: #fff;
 }
+td.active{
+    cursor: pointer;
+}

@@ -2,12 +2,7 @@
 
 import React from "react";
 
-
-
-class TableHeader extends React.Component{
-
-
-    createThead = () => {
+const TableHeader = () => {
         let thead = [];
         let num;
             // Outer loop to create parent
@@ -25,16 +20,7 @@ class TableHeader extends React.Component{
         thead.push(<tr key={math} className="thead-dark">{children}</tr>)
         }
         return thead
-    }
-
-
-    render() {
-        return(
-            <>
-                {this.createThead()}
-            </>
-        )
-    }
+    
 }
 
 export default TableHeader;

@@ -6,7 +6,7 @@ import AppWrap from "./app2/appWrap";
 
 
 
-function AppRouter(){
+const AppRouter=()=>{
     return (
         <Router>
             

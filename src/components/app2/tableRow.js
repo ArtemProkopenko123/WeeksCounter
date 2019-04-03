@@ -1,15 +1,12 @@
-import React from 'react'
-import WeeklyMood from './weeklyMood';
-
+import React from 'react';
 
 class TableRow extends React.Component{
 
-
-    createRow = (props) => {
+    
+    createRow = (props) => { 
             // Alert("НЕ ПРАВИЛЬНОЕ ОКРУГЛЕНИЕ !! ОТКЛЮЧИТЬ ЕГО И ПРОВЕРИТЬ");
         let stateVal = props.state;
         let weeks = undefined; 
-        let divStyle;
             // Waiting for the correct input's dates
         if(stateVal.inputDate && stateVal.inputMonth && (stateVal.inputYear.length === 4) ){
             weeks = this.getWeeksCount(stateVal);
@@ -29,9 +26,11 @@ class TableRow extends React.Component{
                 if(year>0) lastItem += 1; else lastItem = j;
                     
                     // Set class name if td is active
-                if(weeks && lastItem <= weeks){ divStyle = 'active'} else {divStyle = ''} ;
+                if(weeks && lastItem <= weeks)
+                    children.push(<td onClick={this.props.setMood} className="active" id={lastItem.toString()} key={lastItem.toString()}>{lastItem}</td>)
+                else children.push(<td id={lastItem.toString()} key={lastItem.toString()}>{lastItem}</td>)
 
-                children.push(<td onClick={this.props.setMood} className={divStyle} id={lastItem.toString()} key={lastItem.toString()}>{lastItem}</td>)
+                
             }
                 //Create the parent and add the children
             tr.push(<tr key={year.toString()}><th className="bg-dark text-white">{year}</th>{children}</tr>)
@@ -50,6 +49,7 @@ class TableRow extends React.Component{
       
 
     getWeeksCount(state){
+        
             // Curent date
         const curentDate = new Date();
         let weeks = (((curentDate.getFullYear() - state.inputYear) * 365) / 7) + (((curentDate.getMonth()+1 - state.inputMonth) * 30 ) / 7) - Math.abs(((curentDate.getDate() - state.inputDate ) / 7 ));
@@ -57,15 +57,12 @@ class TableRow extends React.Component{
         //if((weeks / 52 ) <= 8 )weeks = weeks + 1;
         if((weeks / 52) > 65) weeks = weeks - 1;
         return  weeks - (weeks / 52 / 8);
-
     }
+
 
     render() {
         return(
             <>
-                <WeeklyMood 
-                    state = {this.props}
-                />
                 {this.createRow(this.props)}
             </>
         )

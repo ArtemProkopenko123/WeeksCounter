@@ -2,6 +2,7 @@ import React from 'react';
 import DateForm from './dateForm';
 import TableRow from './tableRow';
 import TableHeader from './tableHeader';
+import WeeklyMood from './weeklyMood';
 
 export default class AppWrap extends React.Component {
 
@@ -11,13 +12,13 @@ export default class AppWrap extends React.Component {
         // Main state
         this.state = {
             inputDate: '1',
-            inputMonth: '4',
-            inputYear: '2018',
-            error: undefined
+            inputMonth: '3',
+            inputYear: '1993',
+            error: undefined,
+            weekId: undefined,
+            weeksMood: undefined
         };
         this.handler = this.handler.bind(this);
-
-        this.setMood = this.setMood.bind(this);
     }
     handler(inputDate,inputMonth,inputYear) {
         // Validate input's dates to set or remove error message 
@@ -43,10 +44,10 @@ export default class AppWrap extends React.Component {
             });
         }
     }
-    setMood (event){
+    setMood = (event) => {
         this.setState({
             weekId: event.target.id
-        })
+        });
     }
     render(){
         return(
@@ -68,10 +69,14 @@ export default class AppWrap extends React.Component {
                         <tbody>
                             <TableRow
                                 state = {this.state}
+                                
                                 setMood = {this.setMood}
                             />
                         </tbody>
                     </table>
+                    <WeeklyMood
+                        state = {this.state.weekId}
+                    />
                 </div>
                 
             </div>

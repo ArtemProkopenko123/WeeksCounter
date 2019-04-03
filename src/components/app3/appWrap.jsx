@@ -9,6 +9,8 @@ class TestAppWrap extends React.Component {
         };
         this.incrementCount = this.incrementCount.bind(this);
         this.decrementCounter = this.decrementCounter.bind(this);
+
+        this.getData = this.getData.bind(this);
     }
     incrementCount() {
         this.setState( {
@@ -19,6 +21,11 @@ class TestAppWrap extends React.Component {
         this.setState( {
           counter: this.state.counter - 1
         });
+    }
+    getData(val){
+        console.log("THIS COUNTER ", this.counter);
+        console.log("THIS STATE CONTER ", this.state.counter);
+        console.log("VAL  ", val);
     }
     render(){
         return(
@@ -34,6 +41,7 @@ class TestAppWrap extends React.Component {
                     <div className="col">
                         <Child2 
                             counter = {this.state.counter}
+                            getVal = {this.getData}
                         />
                     </div>
                 </div>

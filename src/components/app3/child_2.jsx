@@ -22,11 +22,9 @@ class Child2 extends React.Component {
                 <h3>Child 2: {this.state.counter2 } - {this.props.counter} = {this.state.counter2 - this.props.counter}</h3> 
                 
                 <button onClick={this.sentVal(((this.state.counter2 - this.props.counter) * 7 )+ 1000)}>SENT VAL</button>
-                <button onClick={this.showAlert.bind("AAA")} value="BUTTON VALUE">show alert</button>
+                <button onClick={this.showAlert.bind()} value="BUTTON VALUE">show alert</button>
             </>
         );
     }
-    
-
 }
 export default Child2;

@@ -2,7 +2,7 @@ import React from "react";
 import {BrowserRouter as Router, Route,Link} from "react-router-dom";
 import Info from "./info";
 import ProdFilterTable from "./app1/prodFilterTable";
-import AppWrap from "./app2/appWrap";
+import AppWrap from "./denisApp2/AppWrap";
 import TestAppWrap from "./app3/appWrap";
 
 

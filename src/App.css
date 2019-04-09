@@ -1,23 +1,41 @@
 input{
-    margin: 0 10px;
+    padding:  5px;
+    max-width: 350px;
+    margin:  0 auto;
+    text-align: center;
 }
-
+button {
+    max-width: 350px; 
+    margin:  0 auto;
+}
 table th {
-    font-size: 7px;
+    font-size: 6px;
     padding: 0 !important;
     margin: 0;
 }
 
 .table td, .table th {
     padding: 0;
-    font-size: 7px;
+    font-size: 6px;
     
 }
 
 .table  tbody td.active {
     background-color: red;
     color: #fff;
+    transition: .4s;
+    cursor: pointer;
 }
+.table  tbody td.selected {
+    background-color: orange;
+    color: #fff;
+    transition: .4s;
+}
+
 td.active{
     cursor: pointer;
 }
+label{
+    width: 100%;
+}
+

@@ -9,11 +9,11 @@ export default class AppWrap extends React.Component{
             super();
             this.state = {
                 weeks: undefined,
-                weeksMoods: getCookie('weekMoods')
+                weeksMoods: []
             };
             this.setWeeks = this.setWeeks.bind(this);
             this.getMood = this.getMood.bind(this);
-            console.log("AAA",getCookie('weekMoods'));
+
         }
 
 
@@ -24,7 +24,6 @@ export default class AppWrap extends React.Component{
         });
     }
     getMood(val){
-        saveCookie('weekMoods', this.state.weeksMoods);
         if(this.state.weeksMoods.includes(val)){
             this.state.weeksMoods.splice( this.state.weeksMoods.indexOf(val), 1 );
             this.setState({
@@ -72,16 +71,3 @@ export default class AppWrap extends React.Component{
         );
     }
 }
-function saveCookie (key,data){
-    if(key && data) {
-        if(typeof data == 'object') data = JSON.stringify(data);
-        document.cookie = key+" = " + data;
-    }
-}
-
-
-function getCookie(name) {
-    var matches = document.cookie.match(name);
-    return matches ? matches : []
-  }
-

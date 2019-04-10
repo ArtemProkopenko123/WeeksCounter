@@ -1,9 +1,6 @@
 import React from "react";
 import {BrowserRouter as Router, Route,Link} from "react-router-dom";
-import Info from "./info";
-import ProdFilterTable from "./app1/prodFilterTable";
-import AppWrap from "./denisApp2/AppWrap";
-import TestAppWrap from "./app3/appWrap";
+import AppWrap from "./app/AppWrap";
 
 
 
@@ -18,21 +15,18 @@ const AppRouter=()=>{
                             <Link className="nav-link" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/weather">Weather</Link>
+                            <Link className="nav-link" to="/app1/">App 1</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/denis/">Denis</Link>
+                            <Link className="nav-link" to="/app2/">App 2</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/test/">Test</Link>
+                            <Link className="nav-link" to="/test/">App 3</Link>
                         </li>
                     </ul>
                 </nav>
             </div>
-                <Route path="/" exact component={ProdFilterTable} />
-                <Route path="/weather/" exact component={Info} />
-                <Route path="/denis/" exact component={AppWrap} />
-                <Route path="/test/" exact component={TestAppWrap} />
+                <Route path="" exact component={AppWrap} />
         </Router>
     );
 }
